@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule,routingComponents, } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
@@ -10,6 +10,7 @@ import { RentalListItemComponent } from './rental-list-item/rental-list-item.com
 
 @NgModule({
   declarations: [
+    routingComponents,
     AppComponent,
     HeaderComponent,
     MainComponent,
