@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 3001;
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
@@ -32,3 +33,9 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(bodyParser.json());
+
+
+
+app.listen(PORT, () => {
+    console.log('Server is runnig');
+})

@@ -3,6 +3,9 @@ import { RentalListItemComponent } from './rental-list-item/rental-list-item.com
 import { RentalListComponent } from './rental-list/rental-list.component';
 import { MainComponent } from './main.component';
 import {CommonModule} from '@angular/common';
+import { MainServiceService } from '../Services/main-service.service';
+
+
 
 
 @NgModule({
@@ -11,7 +14,8 @@ import {CommonModule} from '@angular/common';
         RentalListComponent,
         RentalListItemComponent
     ],
-    imports:[CommonModule]
+    imports:[CommonModule],
+    providers:[MainServiceService]
 })
 
 export class MainModule {}
