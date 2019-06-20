@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MainServiceService } from 'src/app/Services/main-service.service';
+import { Rental } from 'src/app/Services/rental.model';
 
 @Component({
   selector: 'app-rental-detail',
@@ -8,20 +10,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RentalDetailComponent implements OnInit {
 
-  private rentalID: number;
+  // private rentalID: string;
+  private Apartment: Rental;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private mainService: MainServiceService) { }
 
   ngOnInit() {
-    // this.rentalID=parseInt(this.route.snapshot.paramMap.get('rentalId'));
+    // this.rentalID=parseInt(this.route.snapshot.paramMap.get('rentalId'));  // another way of getting parameters from URL using ActivatedRoute Class.
     // console.log(this.rentalID);
 
     this.route.params.subscribe(
       (params) => {
-        this.rentalID = params['rentalId'];
-        console.log(this.rentalID);
+        // this.rentalID = params['rentalId'];
+        // console.log(this.rentalID);
+
+        this.getApartment(params['rentalId']);
       });
     
+  }
+
+  getApartment(apartmentId: string) {
+    this.mainService.getApartmentById(apartmentId).subscribe(
+      (apartment: Rental) =>{
+        this.Apartment=apartment;
+      });
   }
 
 }

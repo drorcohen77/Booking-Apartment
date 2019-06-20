@@ -61,6 +61,19 @@ export class MainServiceService {
     createdAt: "24/12/2017"
 }];
 
+public getApartmentById(apartmentId:string):Observable<Rental>{
+  return new Observable<Rental> ((observer) =>{
+
+    setTimeout(() =>{
+      const foundApartment = this.apartments.find((apartment) =>{
+        return apartment.id==apartmentId;
+      });
+
+      observer.next(foundApartment);
+    }, 500);
+  })
+}
+
 public getApartments() :Observable<Rental[]> {
   const apartmntObservable :Observable<Rental[]>= new Observable((observer)=>{
     setTimeout(()=>{
@@ -73,7 +86,7 @@ public getApartments() :Observable<Rental[]> {
 
     setTimeout(()=>{
       observer.complete()}
-      ,1000);
+      ,3000);
 
   });
   return apartmntObservable;
