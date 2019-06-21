@@ -1,4 +1,7 @@
 const PORT = process.env.PORT || 3001;
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://drorc:!1q2w3e4r@cluster0-l2fyw.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
+
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
@@ -33,6 +36,12 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(bodyParser.json());
+
+
+
+app.get('/apartments', (req, res) => {
+    res.json({ 'uccess': true });
+});
 
 
 

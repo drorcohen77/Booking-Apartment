@@ -33,6 +33,10 @@ export class RentalDetailComponent implements OnInit {
     this.mainService.getApartmentById(apartmentId).subscribe(
       (apartment: Rental) =>{
         this.Apartment=apartment;
+      },
+      (err)=>{
+      },
+      ()=>{
       });
   }
 

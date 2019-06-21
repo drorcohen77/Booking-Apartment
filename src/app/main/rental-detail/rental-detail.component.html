@@ -1,7 +1,9 @@
-<p>{{Apartment.id}}</p>
-<p>{{Apartment.title}}</p>
-<p>{{Apartment.city}}</p>
-<p>{{Apartment.street}}</p>
-<p>{{Apartment.category}}</p>
-<p>{{Apartment.description}}</p>
-<p>{{Apartment.dailyRate}}</p>
+<div *ngIf="Apartment">
+    <p>{{Apartment.id}}</p>
+    <p>{{Apartment.title}}</p>
+    <p>{{Apartment.city}}</p>
+    <p>{{Apartment.street}}</p>
+    <p>{{Apartment.category}}</p>
+    <p>{{Apartment.description}}</p>
+    <p>{{Apartment.dailyRate}}</p>
+</div>

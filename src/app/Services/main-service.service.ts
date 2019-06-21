@@ -75,7 +75,7 @@ public getApartmentById(apartmentId:string):Observable<Rental>{
 }
 
 public getApartments() :Observable<Rental[]> {
-  const apartmntObservable :Observable<Rental[]>= new Observable((observer)=>{
+  return new Observable((observer)=>{
     setTimeout(()=>{
       observer.next(this.apartments)}
       ,1000);
@@ -89,7 +89,6 @@ public getApartments() :Observable<Rental[]> {
       ,3000);
 
   });
-  return apartmntObservable;
 }
 
   constructor() { }
