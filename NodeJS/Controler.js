@@ -1,6 +1,6 @@
 const PORT = process.env.PORT || 3001;
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://drorc:!1q2w3e4r@cluster0-l2fyw.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb+srv://drorc:!1q2w3e4r@cluster0-l2fyw.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 const http = require('http');
 const express = require('express');
@@ -14,6 +14,23 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer'); //for uploading pictures
 const path = require('path');
 
+// MongoDB:
+
+const url = 'mongodb+srv://drorc:!1q2w3e4r@cluster0-l2fyw.mongodb.net/test?retryWrites=true&w=majority';
+const MongoClient = require('mongoose');
+MongoClient.connect(url, { useNewUrlParser: true }).then(() => {
+    const fakeDb = new FakeDb();
+    fakeDb.seedDb();
+});
+// dbo = db.db("mydb");
+// dbo.createCollection("mytable")
+// customersCollection = dbo.collection("customers");
+// studentsCollection = dbo.collection("users");
+// console.log("users")
+// });
+
+const Rental = require('./models/rental');
+// const FakeDb = requestAnimationFrame('./fake-db');
 
 var sess = ''; //for req.session to be recognize with all app's
 
@@ -39,9 +56,9 @@ app.use(bodyParser.json());
 
 
 
-app.get('/apartments', (req, res) => {
-    res.json({ 'uccess': true });
-});
+// app.get('/apartments', (req, res) => {
+//     res.json({ 'uccess': true });
+// });
 
 
 
