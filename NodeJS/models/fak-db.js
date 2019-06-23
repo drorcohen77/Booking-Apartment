@@ -1,4 +1,4 @@
-const Rental = require('./models/rental');
+const Rental = require('./rental');
 
 class FakeDb {
 

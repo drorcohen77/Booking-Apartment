@@ -1,6 +1,4 @@
 const PORT = process.env.PORT || 3001;
-// const mongoose = require('mongoose');
-// mongoose.connect('mongodb+srv://drorc:!1q2w3e4r@cluster0-l2fyw.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 const http = require('http');
 const express = require('express');
@@ -16,21 +14,22 @@ const path = require('path');
 
 // MongoDB:
 
-const url = 'mongodb+srv://drorc:!1q2w3e4r@cluster0-l2fyw.mongodb.net/test?retryWrites=true&w=majority';
+const config = require('./config/dev.js');
 const MongoClient = require('mongoose');
-MongoClient.connect(url, { useNewUrlParser: true }).then(() => {
-    const fakeDb = new FakeDb();
-    fakeDb.seedDb();
-});
-// dbo = db.db("mydb");
-// dbo.createCollection("mytable")
-// customersCollection = dbo.collection("customers");
-// studentsCollection = dbo.collection("users");
-// console.log("users")
-// });
+const FakeDb = require('./models/fak-db');
 
-const Rental = require('./models/rental');
-// const FakeDb = requestAnimationFrame('./fake-db');
+const server = async() => {
+    try {
+        await MongoClient.connect(config.DB_URI, { useNewUrlParser: true }).then(() => {
+            const fakeDb = new FakeDb();
+            fakeDb.seeDb();
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+server();
 
 var sess = ''; //for req.session to be recognize with all app's
 
@@ -64,4 +63,4 @@ app.use(bodyParser.json());
 
 app.listen(PORT, () => {
     console.log('Server is runnig');
-})
+});
