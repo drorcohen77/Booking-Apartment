@@ -14,4 +14,4 @@ const rentalSchema = new Schema({
     createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Rental', rentalSchema);
+module.exports = mongoose.model('Rental', rentalSchema);;
