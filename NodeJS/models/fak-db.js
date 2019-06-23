@@ -52,4 +52,4 @@ class FakeDb {
     }
 }
 
-module.exports = FakeDb;;
+module.exports = FakeDb;
