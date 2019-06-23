@@ -12,6 +12,9 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer'); //for uploading pictures
 const path = require('path');
 
+const rentalRoutes = require('./routes/rentals');
+
+
 // MongoDB:
 
 const config = require('./config/dev.js');
@@ -53,12 +56,7 @@ app.use(cors(corsOptions))
 
 app.use(bodyParser.json());
 
-
-
-// app.get('/apartments', (req, res) => {
-//     res.json({ 'uccess': true });
-// });
-
+app.use('/api/v1/rentals', rentalRoutes);
 
 
 app.listen(PORT, () => {
