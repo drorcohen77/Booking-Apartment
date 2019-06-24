@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RentalListItemComponent } from './rental-list-item/rental-list-item.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
 import { MainComponent } from './main.component';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MainServiceService } from '../Services/main-service.service';
 import { Routes, RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
     ],
     imports:[
         CommonModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        HttpClientModule
     ],
     providers:[MainServiceService]
 })
