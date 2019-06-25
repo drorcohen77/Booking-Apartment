@@ -15,7 +15,7 @@ const routes: Routes = [
       component:MainComponent,
       children:[
           {path: '', component: RentalListComponent},
-          {path: ':rentalId', component: RentalDetailComponent}
+          {path: ':apartmentId', component: RentalDetailComponent}
       ]
     }
   ]

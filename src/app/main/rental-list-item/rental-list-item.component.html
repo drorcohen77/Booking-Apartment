@@ -1,4 +1,5 @@
-<a class="card-link" [routerLink]="['/rentals' ,apartment.id]">
+<a class="card-link" [routerLink]="[Path ,apartment._id]">
+    <!-- "Path" varaible from rental-list-item.ts ,  "apartment._id" varaible from apartment array in @input from rental-list-item.ts coming from rental-list.html-->
     <div class="card bwm-card">
         <img class="card-img-top" src="http://via.placeholder.com/350x250" alt="">
         <div class="card-block">

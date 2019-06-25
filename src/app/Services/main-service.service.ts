@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MainServiceService {
 
-  private Url:string = '/v1/rentals';
+  private Url:string = "/api/v1/rentals/";
 
   constructor(private http:HttpClient) { }
   

@@ -22,17 +22,19 @@ export class RentalDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params) => {
         // this.rentalID = params['rentalId'];
-        // console.log(this.rentalID);
+        console.log(params);
 
-        this.getApartment(params['rentalId']);
+        this.getApartment(params['apartmentId']);
       });
     
   }
 
   getApartment(apartmentId: string) {
+    console.log(apartmentId);
     this.mainService.getApartmentById(apartmentId).subscribe(
       (apartment: Rental) =>{
         this.Apartment=apartment;
+        console.log(this.Apartment);
       },
       (err)=>{
       },

@@ -9,6 +9,8 @@ export class RentalListItemComponent implements OnInit {
 
 @Input() apartment: any;
 
+private Path:string ='/rentals';
+
   constructor() { }
 
   ngOnInit() {
