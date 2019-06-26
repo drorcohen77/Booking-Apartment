@@ -9,23 +9,23 @@
     .details-section {
         color: #484848;
         .rental {
-            &-type {
+            .type {
                 font-size: 14px;
                 font-weight: 300;
                 text-transform: uppercase;
                 margin: 0;
             }
-            &-title {
+            .title {
                 margin-bottom: 5px;
                 font-size: 32px;
                 font-weight: 700;
             }
-            &-city {
+            .city {
                 font-size: 14px;
                 font-weight: 300;
                 margin-bottom: 20px;
             }
-            &-room-info {
+            .room-info {
                 margin-bottom: 20px;
                 font-weight: 300;
                 font-size: 16px;
@@ -36,11 +36,11 @@
                     margin-right: 2px;
                 }
             }
-            &-description {
+            .description {
                 font-weight: 300;
                 margin-bottom: 30px;
             }
-            &-assets {
+            .assets {
                 .title {
                     margin-bottom: 10px;
                     font-weight: 700;
