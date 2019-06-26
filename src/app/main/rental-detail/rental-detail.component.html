@@ -1,9 +1,50 @@
-<div *ngIf="Apartment">
-    <p>{{Apartment.id}}</p>
-    <p>{{Apartment.title}}</p>
-    <p>{{Apartment.city}}</p>
-    <p>{{Apartment.street}}</p>
-    <p>{{Apartment.category}}</p>
-    <p>{{Apartment.description}}</p>
-    <p>{{Apartment.dailyRate}}</p>
-</div>
+<section id="rentalDetails" *ngIf="Apartment">
+    <div class="upper-section">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{Apartment.image}}" alt="">
+            </div>
+            <div class="col-md-6">
+                <!-- Will be replaced with map !!!! -->
+                <img src="{{Apartment.image}}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="details-section">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="rental">
+                    <h2 class="rental-type {{Apartment.category}}">{{Apartment.shared ? 'Share' : 'Whole'}} {{Apartment.category}}</h2>
+                    <h1 class="rental-title">{{Apartment.title}}</h1>
+                    <h2 class="rental-city">{{Apartment.city | ucwords}}</h2>
+                    <div class="rental-room-info">
+                        <span><i class="fa fa-building"></i>{{Apartment.bedrooms}} bedrooms</span>
+                        <span><i class="fa fa-user"></i> {{Apartment.bedrooms + 4}} guests</span>
+                        <span><i class="fa fa-bed"></i> {{Apartment.bedrooms + 2}} beds</span>
+                    </div>
+                    <p class="rental-description">
+                        {{Apartment.description | uppercase}}
+                    </p>
+                    <hr>
+                    <div class="rental-assets">
+                        <h3 class="title">Assets</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span><i class="fa fa-asterisk"></i> Cooling</span>
+                                <span><i class="fa fa-thermometer"></i> Heating</span>
+                                <span><i class="fa fa-location-arrow"></i> Iron</span>
+                            </div>
+                            <div class="col-md-6">
+                                <span><i class="fa fa-desktop"></i> Working area</span>
+                                <span><i class="fa fa-cube"></i> Washing machine</span>
+                                <span><i class="fa fa-cube"></i> Dishwasher</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"> BOOKING</div>
+        </div>
+    </div>
+</section>
