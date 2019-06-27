@@ -5,8 +5,8 @@ class FakeDb {
     constructor() {
         this.rentals = [{
                 title: "Nice view on ocean",
-                city: "San Francisco",
-                street: "Main street",
+                city: "Tel Aviv",
+                street: "Rotshild 145",
                 category: "condo",
                 image: "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg",
                 bedrooms: 4,
