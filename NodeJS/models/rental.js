@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
-const rentalSchema = new Schema({
+const rentalSchema = new mongoose.Schema({ // new mongoose.Schema = new Schema
     title: { type: String, require: true, max: [128, 'too long, max is 128 characters'] },
     city: { type: String, require: true, lowercase: true },
     street: { type: String, require: true, min: [4, 'too short, min is 4 characters'] },
@@ -12,6 +12,7 @@ const rentalSchema = new Schema({
     description: { type: String, require: true },
     dailyRate: Number,
     createdAt: { type: Date, default: Date.now },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' } //type: mongoose.Schema. = type: Schema.
 });
 
 module.exports = mongoose.model('Rental', rentalSchema);

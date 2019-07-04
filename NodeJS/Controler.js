@@ -13,13 +13,14 @@ const multer = require('multer'); //for uploading pictures
 const path = require('path');
 
 const rentalRoutes = require('./routes/rentals');
+const usersRoutes = require('./routes/users');
 
 
 // MongoDB:
 
 const config = require('./config/dev.js');
 const MongoClient = require('mongoose');
-const FakeDb = require('./models/fak-db');
+const FakeDb = require('./fak-db');
 
 const server = async() => {
     try {
@@ -57,6 +58,7 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json());
 
 app.use('/api/v1/rentals', rentalRoutes);
+app.use('/api/v1/users', usersRoutes);
 
 
 app.listen(PORT, () => {

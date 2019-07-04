@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentFactoryResolver } from '@angular/core';
 import {CamelizePipe} from 'ngx-pipes';
 
 
@@ -22,6 +22,7 @@ export class MapService {
     const camlizedLocation = this.camelize(location);
 
     this.locationCache[camlizedLocation] = coordinates;
+    console.log(this.locationCache);
   }
 
   private isLocationCached(location): boolean {
@@ -32,7 +33,7 @@ export class MapService {
     console.log(location);
 
     this.geoCoder = new (<any>window).google.maps.Geocoder();
-
+    console.log(this.geoCoder);
     return new Observable((observer) => {
 
       if (this.isLocationCached(location)) {
@@ -41,7 +42,7 @@ export class MapService {
       }else{
 
         this.geoCoder.geocode({address: location}, (result,status) => {
-          console.log(status);
+          console.log(result[0]);
           console.log(result[0].geometry);
           console.log(location);
   
