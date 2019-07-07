@@ -16,3 +16,54 @@ p {
 .house {
     color: #bf1818;
 }
+
+.btn-bwm {
+    background-color: #F44336;
+    border-color: #F44336;
+    color: white;
+    &:hover,
+    &:focus,
+    &:active {
+        border-color: #F44336 !important;
+        color: #F44336 !important;
+    }
+}
+
+.bwm-form {
+    color: #bf1818;
+    form {
+        margin-bottom: 10px;
+    }
+    .alert {
+        p {
+            margin: 0;
+        }
+    }
+    h1 {
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+    .image-container {
+        position: relative;
+        img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+    label {
+        font-size: 12px;
+    }
+    .form-text {
+        font-size: 13px;
+    }
+    .catchphrase {
+        text-align: center;
+        font-size: 42px;
+        position: absolute;
+        color: #f1f1f1;
+        padding: 40px;
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-top: 50px;
+        letter-spacing: 1px;
+    }
+}
