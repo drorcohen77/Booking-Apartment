@@ -1,29 +1,27 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MainServiceService } from '../Services/main-service.service';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { RgisterComponent } from './rgister/rgister.component';
 
 
 
 const routes: Routes = [
           {path: 'login', component: LoginComponent},
-          {path: 'register', component: RgisterComponent}
+          {path: 'register', component: RegisterComponent}
       ]
-    
+
+
 @NgModule({
     declarations: [
         LoginComponent,
-        RgisterComponent
+        RegisterComponent
     ],
     imports:[
-        CommonModule,
         RouterModule.forChild(routes),
-        HttpClientModule
+        FormsModule
     ],
-    providers:[MainServiceService]
+    providers:[]
 })
 
 export class AuthModule {}

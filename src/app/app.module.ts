@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { MainModule } from './main/main.module';
 import { AuthComponent } from './auth/auth.component';
+// import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AuthComponent } from './auth/auth.component';
     routingComponents,
     AppComponent,
     HeaderComponent,
-    AuthComponent,
+    AuthComponent
+    // AuthComponent,
   ],
   imports: [
     BrowserModule,
