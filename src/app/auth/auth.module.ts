@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../Services/auth.service';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
         FormsModule,
         CommonModule
     ],
-    providers:[]
+    providers:[AuthService]
 })
 
 export class AuthModule {}
