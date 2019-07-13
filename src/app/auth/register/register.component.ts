@@ -1,6 +1,6 @@
 import { AuthService } from './../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   formData: any = {};
   errors: any[] = [];
 
-  constructor(private AuthService: AuthService, private router: Router) { }
+  constructor(private AuthService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
