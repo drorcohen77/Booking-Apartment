@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgPipesModule} from 'ngx-pipes';
 import { UppercasePipe } from '../common/Pipes/uppercase.pipe';
 import { MapModule } from '../common/map/map.module';
+import { AuthGuard } from '../Services/auth.guard';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
       component:MainComponent,
       children:[
           {path: '', component: RentalListComponent},
-          {path: ':apartmentId', component: RentalDetailComponent}
+          {path: ':apartmentId', component: RentalDetailComponent, canActivate: [AuthGuard]}
       ]
     }
   ]
