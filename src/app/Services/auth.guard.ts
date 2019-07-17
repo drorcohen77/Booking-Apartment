@@ -28,11 +28,12 @@ export class AuthGuard implements CanActivate {
   }
 
   private isLoginOrRegistred(): boolean {
+    
     if (this.url.includes('login') || this.url.includes('register')) {
         return true;
     }
 
-    return true;
+    return false;
   }
 
   canActivate(

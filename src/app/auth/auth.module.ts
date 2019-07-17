@@ -6,6 +6,10 @@ import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../Services/auth.service';
 import { AuthGuard } from '../Services/auth.guard';
+import { TokenInterceptor } from '../Services/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { TokenInterceptor } from '../Services/token.interceptor';
 
 
 
@@ -28,7 +32,17 @@ const routes: Routes = [
     ],
     providers:[
         AuthService,
-        AuthGuard
+        AuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: TokenInterceptor,
+        //     multi: true
+        // }
     ]
 })
 
