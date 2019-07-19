@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Rental } from 'src/app/Services/rental.model';
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -8,14 +7,14 @@ import { Rental } from 'src/app/Services/rental.model';
 })
 export class RentalDetailBookingComponent implements OnInit {
 
-  @Input() rental:Rental;
+  @Input() price: number;
+
+  public daterange: any = {};
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  public daterange: any = {};
 
     // see original project for full list of options
     // can also be setup using the config service to apply to multiple pickers

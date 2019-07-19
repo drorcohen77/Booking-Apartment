@@ -10,7 +10,7 @@ import { Rental } from 'src/app/Services/rental.model';
 })
 export class RentalListComponent implements OnInit {
 
-  private apartments: Rental[]=[];
+  public apartments: Rental[]=[];
   constructor(private MainService: MainServiceService) { }
 
   ngOnInit() {

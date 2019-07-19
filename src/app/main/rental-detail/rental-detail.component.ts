@@ -11,7 +11,7 @@ import { Rental } from 'src/app/Services/rental.model';
 export class RentalDetailComponent implements OnInit {
 
   // private rentalID: string;
-  private Apartment: Rental;
+  public Apartment: Rental;
 
   constructor(private route: ActivatedRoute, private mainService: MainServiceService) { }
 
