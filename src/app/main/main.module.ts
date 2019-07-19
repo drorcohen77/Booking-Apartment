@@ -8,10 +8,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import {NgPipesModule} from 'ngx-pipes';
+import { NgPipesModule } from 'ngx-pipes';
 import { UppercasePipe } from '../common/Pipes/uppercase.pipe';
 import { MapModule } from '../common/map/map.module';
+import { Daterangepicker } from 'ng2-daterangepicker';
 import { AuthGuard } from '../Services/auth.guard';
+import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
 
 
 const routes: Routes = [
@@ -31,14 +33,16 @@ const routes: Routes = [
         RentalListComponent,
         RentalListItemComponent,
         RentalDetailComponent,
-        UppercasePipe
+        UppercasePipe,
+        RentalDetailBookingComponent
     ],
     imports:[
         CommonModule,
         RouterModule.forChild(routes),
         HttpClientModule,
         NgPipesModule,
-        MapModule
+        MapModule,
+        Daterangepicker
     ],
     providers:[MainServiceService]
 })
