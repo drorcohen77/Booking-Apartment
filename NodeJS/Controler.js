@@ -14,6 +14,7 @@ const path = require('path');
 
 const rentalRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
+const bookingsRoutes = require('./routes/bookings');
 
 
 // MongoDB:
@@ -59,6 +60,7 @@ app.use(bodyParser.json());
 
 app.use('/api/v1/rentals', rentalRoutes);
 app.use('/api/v1/users', usersRoutes);
+app.use('/api/v1/bookings', bookingsRoutes);
 
 
 app.listen(PORT, () => {
