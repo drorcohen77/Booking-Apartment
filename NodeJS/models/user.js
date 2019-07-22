@@ -26,7 +26,7 @@ const userSchema = new Schema({
         max: [32, 'too long, max is 128 characters'],
     },
     rentals: [{ type: Schema.Types.ObjectId, ref: 'Rentals' }],
-    booking: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Booking' }]
+    booking: [{ type: Schema.Types.ObjectId, ref: 'Booking' }]
 });
 
 userSchema.methods.hasSamePassword = function(requistedPassword) {
