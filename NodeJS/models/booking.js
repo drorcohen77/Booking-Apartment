@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const bookingSchem = new booking.Schem({
-    endAt: {
-        type: Date,
-        required: "Ending Date is Required"
-    },
+const bookingSchem = new Schema({
     startAt: {
         type: Date,
         required: "Starting Date is Required"
+    },
+    endAt: {
+        type: Date,
+        required: "Ending Date is Required"
     },
     totalPrice: Number,
     days: Number,
@@ -17,8 +17,8 @@ const bookingSchem = new booking.Schem({
         type: Date,
         default: Date.Now
     },
-    user: { type: mongoose.Schem.types.ObjectId, ref: 'Users' },
-    rental: { type: mongoose.Schem.types.ObjectId, ref: 'Rentals' }
-})
+    user: { type: Schema.Types.ObjectId, ref: 'Users' },
+    rental: { type: Schema.Types.ObjectId, ref: 'Rentals' }
+});
 
 module.exports = mongoose.model('Booking', bookingSchem);
