@@ -21,14 +21,14 @@ router.get('/:id', (req, res) => {
     const rentalId = req.params.id;
 
     Rentals.findById(rentalId)
-        .populate('user', 'username - _id')
-        .populate('booking', 'startAt endAt - _id')
-        .exec(function(err, foundRentals) {
+        .populate('user', 'username -_id')
+        .populate('booking', 'startAt endAt -_id')
+        .exec(function(err, foundRental) {
             if (err) {
                 res.status(422).send({ errors: [{ title: 'Rental Error!', detail: 'Could not find Rental!' }] });
             }
 
-            return res.json(foundRentals);
+            return res.json(foundRental);
         });
 
 });
