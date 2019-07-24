@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
                 res.status(422).send({ errors: [{ title: 'Rental Error!', detail: 'Could not find Rental!' }] });
             }
 
-            return res.json(foundRental); //
+            return res.json(foundRental);
         });
 
 });
