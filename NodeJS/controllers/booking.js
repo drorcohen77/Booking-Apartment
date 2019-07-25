@@ -7,24 +7,24 @@ const moment = require('moment');
 
 exports.createBooking = (req, res) => {
     const { startAt, endAt, totalPrice, guests, days, rental } = req.body;
-    const user = res.local.user;
+    const userB = res.locals.user;
 
     const booking = new Booking({ startAt, endAt, totalPrice, guests, days });
 
     Rental.findById(rental._id)
         .populate('booking')
         .populate('user')
-        .exec((err, foundRental) => {
+        .exec(function(err, foundRental) {
             if (err) {
                 return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
             }
 
-            if (foundRental.user.id === user.id) {
+            if (foundRental.user.id === userB.id) {
                 return res.status(422).send({ errors: [{ title: 'Invalid User!', detail: 'Cannot create booking on your Rental!' }] });
             }
 
             if (isValidBooking(booking, foundRental)) {
-                booking.user = user;
+                booking.user = userB;
                 booking.rental = foundRental;
                 foundRental.booking.push(booking);
 
@@ -33,7 +33,7 @@ exports.createBooking = (req, res) => {
                         return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
                     }
                     foundRental.save();
-                    User.update({ _id: user.id }, { $push: { bookings: booking } }, function() {});
+                    User.update({ _id: userB.id }, { $push: { bookings: booking } }, function() {});
 
                     return res.json({ startAt: booking.startAt, endAt: booking.endAt });
                 });
@@ -49,7 +49,7 @@ exports.createBooking = (req, res) => {
 function isValidBooking(proposedbooking, rental) {
     let isValid = true;
 
-    if (rental.booking && rantal.booking.length > 0) {
+    if (rental.booking && rental.booking.length > 0) {
 
         isValid = rental.booking.every(function(booking) {
             const proposedStart = moment(proposedbooking.startAt);

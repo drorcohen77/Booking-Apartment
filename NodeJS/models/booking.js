@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const bookingSchem = new Schema({
+const bookingSchema = new Schema({
     startAt: {
         type: Date,
         required: "Starting Date is Required"
@@ -15,10 +15,10 @@ const bookingSchem = new Schema({
     quests: Number,
     createdAt: {
         type: Date,
-        default: Date.Now
+        default: Date.now
     },
     user: { type: Schema.Types.ObjectId, ref: 'Users' },
     rental: { type: Schema.Types.ObjectId, ref: 'Rentals' }
 });
 
-module.exports = mongoose.model('Booking', bookingSchem);
+module.exports = mongoose.model('Booking', bookingSchema);

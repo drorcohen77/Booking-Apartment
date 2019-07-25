@@ -74,24 +74,25 @@ exports.register = (req, res) => {
 
 }
 
+
 exports.authMiddleware = function(req, res, next) {
 
-    const token = req.header.authorization;
+    const token = req.headers.authorization;
 
 
     if (token) {
-        const user = parseToken(token);
+        const user1 = parseToken(token);
 
-        User.findById(user.userId, function(err, user) {
+        User.findById(user1.userId, function(err, user) {
             if (err) {
                 return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
             }
 
-            if (user) {
-                res.local.user = user;
+            if (user1) {
+                res.locals.user = user1;
                 next();
             } else {
-                return notAutorazed(res);
+                return res.status(401).send({ errors: [{ detail: 'You need to login to get access!' }] });
             }
         });
     } else {
