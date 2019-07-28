@@ -16,16 +16,18 @@ const userSchema = new Schema({
         max: [32, 'too long, max is 128 characters'],
         lowercase: true,
         unique: true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
-            // regExp: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/],
+        // regExp: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        required: 'Email is required'
     },
     password: {
         type: String,
         required: 'Password is required',
         min: [4, 'too short, min is 4 characters'],
         max: [32, 'too long, max is 128 characters'],
+        required: 'Password is required'
     },
-    rentals: [{ type: Schema.Types.ObjectId, ref: 'Rentals' }],
+    rental: [{ type: Schema.Types.ObjectId, ref: 'Rental' }],
     booking: [{ type: Schema.Types.ObjectId, ref: 'Booking' }]
 });
 

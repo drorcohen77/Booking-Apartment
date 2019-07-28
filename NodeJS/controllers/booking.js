@@ -9,7 +9,7 @@ exports.createBooking = (req, res) => {
     const { startAt, endAt, totalPrice, guests, days, rental } = req.body;
     const userB = res.locals.user;
 
-    const booking = new Booking({ startAt, endAt, totalPrice, guests, days });
+    const bookingA = new Booking({ startAt, endAt, totalPrice, guests, days });
 
     Rental.findById(rental._id)
         .populate('booking')
@@ -23,43 +23,63 @@ exports.createBooking = (req, res) => {
                 return res.status(422).send({ errors: [{ title: 'Invalid User!', detail: 'Cannot create booking on your Rental!' }] });
             }
 
-            if (isValidBooking(booking, foundRental)) {
-                booking.user = userB;
-                booking.rental = foundRental;
-                foundRental.booking.push(booking);
 
-                booking.save(function(err) {
-                    if (err) {
-                        return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
-                    }
-                    foundRental.save();
-                    User.update({ _id: userB.id }, { $push: { bookings: booking } }, function() {});
+            if (isValidBooking(bookingA, foundRental)) {
+                bookingA.user = userB;
+                bookingA.rental = foundRental;
+                foundRental.booking.push(bookingA);
+                // foundRental.save();
+                // booking.save();
+                // return res.json({ 'created': true });
+                // return res.status(422).send(bookingA);
 
-                    return res.json({ startAt: booking.startAt, endAt: booking.endAt });
-                });
+                // bookingA.save(function(err) {
+                //     if (err) {
+                //         return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
+                //     }
+                //     foundRental.save();
+                //     User.update({ _id: userB.id }, { $push: { bookings: bookingA } }, function() {});
+
+                //     return res.json({ startAt: bookingA.startAt, endAt: bookingA.endAt });
+                // });
+                bookingA.save()
+                foundRental.save();
+                User.update({ _id: userB.id }, { $push: { bookings: bookingA } }, function() {});
+
+                return res.json({ startAt: bookingA.startAt, endAt: bookingA.endAt });
+
 
             } else {
                 return res.status(422).send({ errors: [{ title: 'Invalid Booking!', detail: 'Choosen dates are already taken!' }] });
             }
 
-            return res.json({ booking, foundRental });
+            return res.json({ bookingA, foundRental });
         });
 }
 
-function isValidBooking(proposedbooking, rental) {
+function isValidBooking(proposedBooking, rental) {
     let isValid = true;
 
     if (rental.booking && rental.booking.length > 0) {
 
-        isValid = rental.booking.every(function(booking) {
-            const proposedStart = moment(proposedbooking.startAt);
-            const proposedEnd = moment(proposedbooking.endAt);
+        isValid = rental.booking.every(function(bookings) {
+            const proposedStart = moment(proposedBooking.startAt);
+            const proposedEnd = moment(proposedBooking.endAt);
 
-            const actualStart = moment(booking.startAt);
-            const actualEnd = moment(booking.endtAt);
+            const actualStart = moment(bookings.startAt);
+            const actualEnd = moment(bookings.endtAt);
 
+            //         if ((actualStart < proposedStart && actualEnd < proposedStart) || (proposedEnd < actualEnd && proposedEnd < actualStart)) {
+            //             return true;
+            //         } else {
+            //             return false;
+            //         }
+            //     });
+            // }
 
+            // return isValid;
             return ((actualStart < proposedStart && actualEnd < proposedStart) || (proposedEnd < actualEnd && proposedEnd < actualStart));
         });
     }
+    return isValid;
 }

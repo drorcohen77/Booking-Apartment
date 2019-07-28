@@ -71,7 +71,7 @@ class FakeDb {
             const newRental = new Rental(rental);
             newRental.user = user;
 
-            user.rentals.push(newRental)
+            user.rental.push(newRental)
             newRental.save();
         });
         user.save();
