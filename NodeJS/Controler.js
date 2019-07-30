@@ -2,10 +2,11 @@ const PORT = process.env.PORT || 3002;
 
 const http = require('http');
 const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const session = require('express-session');
-const bodyParser = require('body-parser');
+
 const fs = require("fs"); //for wirte tinto file
 
 const cookieParser = require('cookie-parser');

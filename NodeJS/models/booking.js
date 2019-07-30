@@ -17,8 +17,8 @@ const bookingSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    user: { type: Schema.Types.ObjectId, ref: 'Users' },
-    rental: { type: Schema.Types.ObjectId, ref: 'Rental' }
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    rentals: { type: Schema.Types.ObjectId, ref: 'Rental' }
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);

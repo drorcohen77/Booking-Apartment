@@ -3,14 +3,14 @@ const MongooseHelpers = require('../helpers/mongoose.js');
 const jwt = require('jsonwebtoken');
 const config = require('../config/dev.js');
 
-exports.auth = (req, res) => {
+exports.auth = function(req, res) {
     const { email, password } = req.body;
 
     if (!password || !email) {
         return res.status(422).send({ errors: [{ title: 'Data missing!', detail: 'Provide email and password!' }] });
     }
 
-    User.findOne({ email }, (err, user) => {
+    User.findOne({ email }, function(err, user) {
         if (err) {
             return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
         }
@@ -35,7 +35,7 @@ exports.auth = (req, res) => {
 
 };
 
-exports.register = (req, res) => {
+exports.register = function(req, res) {
 
     const { username, email, password, passwordConfirmation } = req.body;
 
@@ -47,7 +47,7 @@ exports.register = (req, res) => {
         return res.status(422).send({ errors: [{ title: 'Invalid passwored!', detail: 'paswword is not the same as confirmation!' }] });
     }
 
-    User.findOne({ email }, (err, existingUser) => {
+    User.findOne({ email }, function(err, existingUser) {
         if (err) {
             return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
         }
@@ -62,7 +62,7 @@ exports.register = (req, res) => {
             password
         });
 
-        user.save((err) => {
+        user.save(function(err) {
             if (err) {
                 return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
             }
@@ -70,34 +70,7 @@ exports.register = (req, res) => {
             return res.json({ 'registered': true });
         });
     });
-
-
 }
-
-// exports.authMiddleware = function(req, res, next) {
-
-//     const token = req.headers.authorization;
-
-
-//     if (token) {
-//         const user = parseToken(token);
-
-//         User.findById(user.userId, function(err, user) {
-//             if (err) {
-//                 return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
-//             }
-
-//             if (user) {
-//                 res.locals.user = user;
-//                 next();
-//             } else {
-//                 return res.status(401).send({ errors: [{ detail: 'You need to login to get access!' }] });
-//             }
-//         });
-//     } else {
-//         return notAutorazed(res);
-//     }
-// }
 
 exports.authMiddleware = function(req, res, next) {
 
@@ -112,8 +85,8 @@ exports.authMiddleware = function(req, res, next) {
                 return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
             }
 
-            if (user1) {
-                res.locals.user = user1;
+            if (user) {
+                res.locals.user = user;
                 next();
             } else {
                 return res.status(401).send({ errors: [{ detail: 'You need to login to get access!' }] });

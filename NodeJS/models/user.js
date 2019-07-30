@@ -27,8 +27,8 @@ const userSchema = new Schema({
         max: [32, 'too long, max is 128 characters'],
         required: 'Password is required'
     },
-    rental: [{ type: Schema.Types.ObjectId, ref: 'Rental' }],
-    booking: [{ type: Schema.Types.ObjectId, ref: 'Booking' }]
+    rentals: [{ type: Schema.Types.ObjectId, ref: 'Rental' }],
+    bookings: [{ type: Schema.Types.ObjectId, ref: 'Booking' }]
 });
 
 userSchema.methods.hasSamePassword = function(requistedPassword) {
@@ -49,4 +49,4 @@ userSchema.pre('save', function(next) {
 });
 
 
-module.exports = mongoose.model('Users', userSchema);
+module.exports = mongoose.model('User', userSchema);
