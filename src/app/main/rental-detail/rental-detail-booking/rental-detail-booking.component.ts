@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Booking} from '../../../Services/booking.model';
+import { HelperService } from 'src/app/Services/helper.service';
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -8,21 +10,34 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RentalDetailBookingComponent implements OnInit {
 
   @Input() price: number;
+  @Input() bookings: Booking[];
 
   public daterange: any = {};
+  public bookedOutDates: any[] =[];
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-    // see original project for full list of options
+  // see original project for full list of options
     // can also be setup using the config service to apply to multiple pickers
     public options: any = {
-        locale: { format: 'YYYY-MM-DD' },
-        alwaysShowCalendars: false,
-        opens: 'left'
-    };
+      locale: { format: 'YYYY-MM-DD' },
+      alwaysShowCalendars: false,
+      opens: 'left'
+  };
+
+  constructor(private helper:HelperService) { }
+
+  ngOnInit() {
+
+    this.getBookedOutDates();
+  }
+
+  private getBookedOutDates() {
+    if (this.bookings && this.bookings.length > 0) {
+      this.bookings.forEach((booking:Booking)=> {
+        const dateRange =this.helper.getRangeOfDates(booking.startAt, booking.endAt);
+        this.bookedOutDates.push(...dateRange);
+      });
+    }
+  }
 
     public selectedDate(value: any, datepicker?: any) {
         // this is the date the iser selected

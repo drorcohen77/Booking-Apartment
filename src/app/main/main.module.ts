@@ -13,7 +13,9 @@ import { UppercasePipe } from '../common/Pipes/uppercase.pipe';
 import { MapModule } from '../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { AuthGuard } from '../Services/auth.guard';
+
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
+import { HelperService } from '../Services/helper.service';
 
 
 const routes: Routes = [
@@ -44,7 +46,7 @@ const routes: Routes = [
         MapModule,
         Daterangepicker
     ],
-    providers:[MainServiceService]
+    providers:[MainServiceService,HelperService]
 })
 
 export class MainModule {}
