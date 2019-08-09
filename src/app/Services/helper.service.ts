@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Booking } from './booking.model';
 import * as moment from 'moment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +10,32 @@ export class HelperService {
 
   constructor() { }
 
-  public getRangeOfDates(startAt,endAt) {
+  private getRangeOfDates(startAt,endAt,dateFormat) {
     const tempDates=[];
-    const mEndAt =moment(endAt);
-    let mStartAt =moment(startAt);
+    const mEndAt = moment(endAt);
+    let mStartAt = moment(startAt);
 
-    while(mStartAt < endAt) {
-      tempDates.push(mStartAt.format('YYYY-MM-DD'));
+    while(mStartAt < mEndAt) {
+      tempDates.push(mStartAt.format(dateFormat));
       mStartAt=mStartAt.add(1,'day');
     }
 
-    tempDates.push(moment(startAt).format('YYYY-MM-DD'));
-    tempDates.push(mEndAt.format('YYYY-MM-DD'));
+    tempDates.push(moment(startAt).format(dateFormat));
+    tempDates.push(mEndAt.format(dateFormat));
 
     return tempDates;
+  }
+
+  private formatDate(date,dateFormat) {
+    return moment(date).format(dateFormat);
+  }
+
+  public formatBookingDate(date) {
+    return this.formatDate(date,Booking.BOOKING_FORMAT);
+  }
+
+  public getBookingRangeOfDates(startAt,endAt) {
+
+    return this.getRangeOfDates(startAt,endAt,Booking.BOOKING_FORMAT);
   }
 }
