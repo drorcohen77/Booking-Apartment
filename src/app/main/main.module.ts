@@ -12,6 +12,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { UppercasePipe } from '../common/Pipes/uppercase.pipe';
 import { MapModule } from '../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { FormsModule } from '@angular/forms';
 import { AuthGuard } from '../Services/auth.guard';
 
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
@@ -44,7 +45,8 @@ const routes: Routes = [
         HttpClientModule,
         NgPipesModule,
         MapModule,
-        Daterangepicker
+        Daterangepicker,
+        FormsModule
     ],
     providers:[MainServiceService,HelperService]
 })
