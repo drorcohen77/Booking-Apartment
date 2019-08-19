@@ -1,3 +1,4 @@
+import { BookingService } from './../../../Services/booking.service';
 import { Component, OnInit, Input } from '@angular/core';
 import {Booking} from '../../../Services/booking.model';
 import { HelperService } from 'src/app/Services/helper.service';
@@ -18,6 +19,7 @@ export class RentalDetailBookingComponent implements OnInit {
   @Input() rental: Rental;
 
   newBooking: Booking;
+  modalRef:any;
 
   public daterange: any = {};
   public bookedOutDates: any[] =[];
@@ -31,7 +33,7 @@ export class RentalDetailBookingComponent implements OnInit {
       isInvalidDate: this.checkForInvalidDates.bind(this)
   };
 
-  constructor(private helper:HelperService, private modalService: NgbModal) { }
+  constructor(private helper:HelperService, private modalService: NgbModal, private BookingService: BookingService) { }
 
   ngOnInit() {
     this.newBooking= new Booking;
@@ -60,12 +62,22 @@ export class RentalDetailBookingComponent implements OnInit {
 
   openConfirmModal(content){
 
-    this.modalService.open(content);
+    this.modalRef = this.modalService.open(content);
     console.log(this.newBooking);
   }
 
   createBooking() {
     console.log(this.newBooking);
+    this.newBooking.rental = this.rental;
+    this.BookingService.createBooking(this.newBooking).subscribe(
+      (bookingData) =>{
+        debugger;
+        this.newBooking = new Booking();
+        this.modalRef.close();
+      },
+      () =>{
+      
+    });
   }
 
     public selectedDate(value: any, datepicker?: any) {
