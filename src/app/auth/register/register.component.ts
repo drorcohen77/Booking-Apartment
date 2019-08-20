@@ -1,5 +1,6 @@
-import { AuthService } from './../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../Services/auth.service';
+
 import { Router, ActivatedRoute  } from '@angular/router';
 
 @Component({
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
     this.AuthService.registerUser(this.formData).subscribe (
       (User: any) => {
       console.log(User);
-      this.router.navigate(['login', {registered: 'success'}])
+      this.router.navigate(['/login', {registered: 'success'}])
       },
       (err) => {
         this.errors = err.error.errors;

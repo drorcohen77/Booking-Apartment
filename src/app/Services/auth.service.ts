@@ -27,7 +27,7 @@ export class AuthService {
 
   constructor(private http:HttpClient) {
    
-    this.decodedToken = JSON.parse(localStorage.getItem('TokenCurrentUser')) || new DecodedToken();
+    this.decodedToken = JSON.parse(localStorage.getItem('TokentUser')) || new DecodedToken();
     console.log(this.decodedToken);
    }
 
@@ -61,7 +61,7 @@ export class AuthService {
   public loginUser(userObj: any): Observable<any> {
     console.log(userObj);
     return this.http.post(this.userUrl,userObj).map(
-      (token: any) => this.saveToken(token));
+      (token: string) => this.saveToken(token));
   }
 
   public isAuthenticated(): boolean {

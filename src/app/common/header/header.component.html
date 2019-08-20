@@ -29,10 +29,10 @@
             </li>
             <ng-container *ngIf="!auth.isAuthenticated()">
                 <li class="nav-item active">
-                    <a class="nav-link" routerLink="login">Login <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="register">Registre</a>
+                    <a class="nav-link" routerLink="/register">Registre</a>
                 </li>
             </ng-container>
             <ng-container *ngIf="auth.isAuthenticated()">

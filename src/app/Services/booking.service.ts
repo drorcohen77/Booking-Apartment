@@ -9,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BookingService {
 
-  private bookingsUrl:string = "/api/v1/bookings";
+  private bookingsUrl:string = "/api/v1/bookings/";
 
   constructor(private http:HttpClient) { }
 
 
   public createBooking(booking: Booking): Observable<any> {
     console.log(booking);
-    return this.http.post(this.bookingsUrl,booking);
+    return this.http.post('/api/v1/bookings/', booking);
   }
 }

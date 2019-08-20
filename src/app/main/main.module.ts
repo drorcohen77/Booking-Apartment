@@ -1,3 +1,4 @@
+import { BookingService } from './../Services/booking.service';
 import { NgModule } from '@angular/core';
 import { RentalListItemComponent } from './rental-list-item/rental-list-item.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
@@ -48,7 +49,7 @@ const routes: Routes = [
         Daterangepicker,
         FormsModule
     ],
-    providers:[MainServiceService,HelperService]
+    providers:[MainServiceService,HelperService,BookingService]
 })
 
 export class MainModule {}
