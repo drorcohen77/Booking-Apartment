@@ -14,8 +14,8 @@ const multer = require('multer'); //for uploading pictures
 const path = require('path');
 
 const rentalRoutes = require('./routes/rentals');
-const usersRoutes = require('./routes/users');
-const bookingsRoutes = require('./routes/bookings');
+const userRoutes = require('./routes/users');
+const bookingRoutes = require('./routes/bookings');
 
 
 // MongoDB:
@@ -60,8 +60,8 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json());
 
 app.use('/api/v1/rentals', rentalRoutes);
-app.use('/api/v1/users', usersRoutes);
-app.use('/api/v1/bookings', bookingsRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/bookings', bookingRoutes);
 
 
 app.listen(PORT, () => {

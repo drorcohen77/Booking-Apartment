@@ -27,7 +27,7 @@ export class TokenInterceptor implements HttpInterceptor {
         });
     }
     
-    debugger;
+    
     return next.handle(request);
     
   }

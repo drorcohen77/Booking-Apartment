@@ -53,7 +53,7 @@ exports.register = function(req, res) {
         }
 
         if (existingUser) {
-            return res.status(422).send({ errors: [{ title: 'Invalid passwored!', detail: 'User with this email is already exists!' }] });
+            return res.status(422).send({ errors: [{ title: 'Invalid email!', detail: 'User with this email is already exists!' }] });
         }
 
         const user = new User({
@@ -76,11 +76,11 @@ exports.authMiddleware = function(req, res, next) {
 
     const token = req.headers.authorization;
 
-
     if (token) {
-        const user1 = parseToken(token);
 
-        User.findById(user1.userId, function(err, user) {
+        const user = parseToken(token);
+        return res.send({ title: 'token', detail: user });
+        User.findById(user.userId, function(err, user) {
             if (err) {
                 return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
             }
@@ -89,11 +89,11 @@ exports.authMiddleware = function(req, res, next) {
                 res.locals.user = user;
                 next();
             } else {
-                return res.status(401).send({ errors: [{ detail: 'You need to login to get access!' }] });
+                return res.status(422).send({ errors: [{ title: 'Not autorized', detail: 'You need to login to get access!' }] });
             }
         });
     } else {
-        return notAutorazed(res);
+        return res.status(422).send({ errors: [{ title: 'Not autorized', detail: 'You need to login to get access!' }] });
     }
 }
 
