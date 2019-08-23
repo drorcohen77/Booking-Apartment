@@ -79,7 +79,7 @@ exports.authMiddleware = function(req, res, next) {
     if (token) {
 
         const user = parseToken(token);
-        return res.send({ title: 'token', detail: user });
+
         User.findById(user.userId, function(err, user) {
             if (err) {
                 return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
@@ -99,8 +99,12 @@ exports.authMiddleware = function(req, res, next) {
 
 
 function parseToken(token) {
+    const withOutBearer = token.slice(6);
+    const tokenArrey = ['Bearer', withOutBearer];
+    const jwtVerify = jwt.verify(tokenArrey[1], config.SECRET);
+    // const jwtVerify = jwt.verify(token.split(" ")[1], config.SECRET);
+    return jwtVerify;
 
-    return jwt.verify(token.split(' ')[1], config.SECRET);
 }
 
 function notAutorazed(res) {

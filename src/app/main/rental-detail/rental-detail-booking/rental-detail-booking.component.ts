@@ -52,12 +52,17 @@ export class RentalDetailBookingComponent implements OnInit {
 
     if (bookings && bookings.length > 0) {
       bookings.forEach((booking:Booking)=> {
-        // const dateRange =this.helper.getRangeOfDates(booking.startAt, booking.endAt);
-        // this.bookedOutDates.push(...dateRange);
-        this.bookedOutDates =this.helper.getBookingRangeOfDates(booking.startAt, booking.endAt);
+        const dateRange =this.helper.getBookingRangeOfDates(booking.startAt, booking.endAt);
+        this.bookedOutDates.push(...dateRange);
+        // this.bookedOutDates =this.helper.getBookingRangeOfDates(booking.startAt, booking.endAt);
         
       });
     }
+  }
+
+  private addNewBookedDates(bookingData: any) {
+    const dateRange = this.helper.getBookingRangeOfDates(bookingData.startAt, bookingData.endAt);
+    this.bookedOutDates.push(...dateRange);
   }
 
   openConfirmModal(content){
