@@ -10,6 +10,10 @@ import { MainModule } from './main/main.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthComponent } from './auth/auth.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
+
 
 // import { AuthComponent } from './auth/auth.component';
 
@@ -27,7 +31,9 @@ import { AuthComponent } from './auth/auth.component';
     AppRoutingModule,
     MainModule,
     AuthModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { HelperService } from 'src/app/Services/helper.service';
 import { Rental } from 'src/app/Services/rental.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -23,6 +24,7 @@ export class RentalDetailBookingComponent implements OnInit {
 
   public daterange: any = {};
   public bookedOutDates: any[] =[];
+  public errors: any[] = [];
 
   // see original project for full list of options
     // can also be setup using the config service to apply to multiple pickers
@@ -33,7 +35,7 @@ export class RentalDetailBookingComponent implements OnInit {
       isInvalidDate: this.checkForInvalidDates.bind(this)
   };
 
-  constructor(private helper:HelperService, private modalService: NgbModal, private BookingService: BookingService) { }
+  constructor(private helper:HelperService, private modalService: NgbModal, private BookingService: BookingService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.newBooking= new Booking;
@@ -66,7 +68,7 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   openConfirmModal(content){
-
+    this.errors = [];
     this.modalRef = this.modalService.open(content);
     console.log(this.newBooking);
   }
@@ -75,13 +77,14 @@ export class RentalDetailBookingComponent implements OnInit {
     console.log(this.newBooking);
     this.newBooking.rental = this.rental;
     this.BookingService.createBooking(this.newBooking).subscribe(
-      (bookingData) =>{
-        debugger;
+      (bookingData: any) =>{
+        this.addNewBookedDates(bookingData);
         this.newBooking = new Booking();
         this.modalRef.close();
+        this.toastr.success('Booking has been succesfully created, check your booking detail in manage section', 'Success!');
       },
-      () =>{
-      
+      (errorResponse: any) =>{
+        this.errors = errorResponse.error.errors;
     });
   }
 
