@@ -3,22 +3,16 @@ const router = express.Router();
 const Rentals = require('../models/rental.js');
 const MongooseHelpers = require('../helpers/mongoose.js');
 const UserCtrl = require('../controllers/user');
+
 const RentalsCtrl = require('../controllers/rentals');
 
 router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
     res.json({ "secret": true });
 });
 
+router.post('', authMiddleware, RentalsCtrl.createRntals);
 
 
-// router.get('', (req, res) => {
-
-//     Rentals.find({})
-//         .select('-bookings')
-//         .exec(function(err, foundRentals) {
-//             res.json(foundRentals);
-//         });
-// });
 
 router.get('/:id', (req, res) => {
     const rentalId = req.params.id;
@@ -36,7 +30,6 @@ router.get('/:id', (req, res) => {
 
 });
 
-router.post('', UserCtrl.authMiddleware, RentalsCtrl.createRntals);
 
 router.get('', (req, res) => {
     const city = req.query.city;
@@ -52,7 +45,7 @@ router.get('', (req, res) => {
             if (city && filteredRentals.length === 0) {
                 return res.status(422).send({ errors: [{ title: 'No Rental Found!', detail: `There are no rental for city ${city}` }] });
             }
-            return res.json(filteredRentals);
+            return res.json({ filteredRentals });
         });
 });
 
