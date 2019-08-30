@@ -19,6 +19,11 @@ export class MainServiceService {
     return this.http.get(this.Url+ apartmentId);
   }
 
+  public getApartmentByCity(city: string): Observable<any>{
+    console.log(city);
+    return this.http.get(this.Url+ `?city=${city}`);
+  }
+
   public getApartments() :Observable<any> {
     return this.http.get(this.Url);
   }

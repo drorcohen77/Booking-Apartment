@@ -5,7 +5,7 @@
                 <div *ngIf="notifyMessage" class="alert alert-success">
                     {{notifyMessage}}
                 </div>
-                <h1>Login</h1>
+                <h1 class="page-title">Login</h1>
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
                     <div class="form-group">
                         <label for="email">Email</label>
