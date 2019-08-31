@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainServiceService } from 'src/app/Services/main-service.service';
 import { Rental } from 'src/app/Services/rental.model';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-rental-search',
@@ -12,6 +13,7 @@ export class RentalSearchComponent implements OnInit {
 
   public apartments: Rental[] =[];
   private paramCity: string;
+  errors: any[]= [];
 
   constructor(private route: ActivatedRoute, private mainService: MainServiceService) { }
 
@@ -34,7 +36,9 @@ export class RentalSearchComponent implements OnInit {
         console.log(this.apartments);;
         
       },
-      (err)=>{},
+      (errorResponse: HttpErrorResponse)=>{
+        this.errors = errorResponse.error.errors;
+      },
       ()=>{}
       );
     }
