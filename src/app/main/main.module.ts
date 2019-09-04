@@ -28,7 +28,7 @@ const routes: Routes = [
       component:MainComponent,
       children:[
           {path: '', component: RentalListComponent},
-          {path: 'new', component: RentalCreateComponent},
+          {path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard]},
           {path: ':apartmentId', component: RentalDetailComponent, canActivate: [AuthGuard]},
           {path: ':city/homes', component: RentalSearchComponent}
       ]
