@@ -99,12 +99,12 @@ exports.authMiddleware = function(req, res, next) {
 
 
 function parseToken(token) {
-    const withOutBearer = token.slice(6);
-    const tokenArrey = ['Bearer', withOutBearer];
-    const jwtVerify = jwt.verify(tokenArrey[1], config.SECRET);
-    return jwtVerify;
-    // const jwtVerify = jwt.verify(token.split(' ')[1], config.SECRET);
+    // const withOutBearer = token.slice(6);
+    // const tokenArrey = ['Bearer', withOutBearer];
+    // const jwtVerify = jwt.verify(tokenArrey[1], config.SECRET);
     // return jwtVerify;
+    const jwtVerify = jwt.verify(token.split(' ')[1], config.SECRET);
+    return jwtVerify;
 
 }
 

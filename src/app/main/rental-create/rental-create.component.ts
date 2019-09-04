@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Rental } from 'src/app/Services/rental.model';
+import { MainServiceService } from 'src/app/Services/main-service.service';
 
 @Component({
   selector: 'app-rental-create',
@@ -9,8 +10,14 @@ import { Rental } from 'src/app/Services/rental.model';
 export class RentalCreateComponent implements OnInit {
 
   newRental: Rental;
+  rentalCategories = Rental.CATEGORIES;
 
-  constructor() { }
+
+  constructor(private mainService: MainServiceService) { }
+
+  handleImageChannge() {
+    this.newRental.image = "http://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/13/image/jpeg"
+  }
 
   ngOnInit() {
     this.newRental = new Rental();
@@ -18,7 +25,14 @@ export class RentalCreateComponent implements OnInit {
   }
 
   createRental() {
-    console.log(this.newRental);
+    this.mainService.createRental(this.newRental).subscribe(
+      ()=>{
+
+      },
+      (err)=> {
+
+      }
+    );
   }
 
 }
