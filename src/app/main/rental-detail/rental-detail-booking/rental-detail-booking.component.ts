@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { DaterangePickerComponent } from 'ng2-daterangepicker';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 
@@ -40,7 +41,7 @@ export class RentalDetailBookingComponent implements OnInit {
       isInvalidDate: this.checkForInvalidDates.bind(this)
   };
 
-  constructor(private helper:HelperService, private modalService: NgbModal, private BookingService: BookingService, private toastr: ToastrService) { }
+  constructor(private helper:HelperService, private modalService: NgbModal, private BookingService: BookingService, private toastr: ToastrService, private  auth: AuthService) { }
 
   ngOnInit() {
     this.newBooking= new Booking;

@@ -16,6 +16,12 @@
             <div class="col-md-8">
                 <div class="rental">
                     <h2 class="rental-type {{Apartment.category}}">{{Apartment.shared ? 'Share' : 'Whole'}} {{Apartment.category}}</h2>
+                    <div class="rental-owner">
+                        <img src="https://api.adorable.io/avatars/285/abott@adorable.png" alt="">
+                        <span>{{Apartment.user.username}}</span>
+                    </div>
+
+
                     <h1 class="rental-title">{{Apartment.title}}</h1>
                     <h2 class="rental-city">{{Apartment.city | ucwords}}</h2>
                     <div class="rental-room-info">
