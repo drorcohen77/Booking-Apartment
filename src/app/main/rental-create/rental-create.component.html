@@ -6,23 +6,23 @@
                 <form #RentalForm="ngForm">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input [(ngModel)]="newRental.title" name="title" type="text" class="form-control" id="title">
+                        <input [(ngModel)]="newRental.title" name="title" type="text" class="form-control" id="title" required>
                     </div>
 
                     <div class="form-group">
                         <label for="city">City</label>
-                        <input [(ngModel)]="newRental.city" name="city" type="text" class="form-control" id="city">
+                        <input [(ngModel)]="newRental.city" name="city" type="text" class="form-control" id="city" required>
                     </div>
 
                     <div class="form-group">
                         <label for="street">Street</label>
-                        <input [(ngModel)]="newRental.street" name="street" type="text" class="form-control" id="street">
+                        <input [(ngModel)]="newRental.street" name="street" type="text" class="form-control" id="street" required>
                     </div>
 
                     <div class="form-group">
                         <label for="Category">Category</label>
 
-                        <select [(ngModel)]="newRental.Category" name="Category" class="form-control" id="Category">
+                        <select [(ngModel)]="newRental.Category" name="Category" class="form-control" id="Category" required>
                 <option *ngFor="let category of rentalCategories" > {{category}} </option>
               </select>
                     </div>
@@ -34,12 +34,12 @@
 
                     <div class="form-group">
                         <label for="bedrooms">Bedrooms</label>
-                        <input [(ngModel)]="newRental.bedrooms" name="bedrooms" type="number" class="form-control" id="bedrooms">
+                        <input [(ngModel)]="newRental.bedrooms" name="bedrooms" type="number" class="form-control" id="bedrooms" required>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea [(ngModel)]="newRental.description" name="description" rows="5" type="text" class="form-control" id="description">
+                        <textarea [(ngModel)]="newRental.description" name="description" rows="5" type="text" class="form-control" id="description" required>
               </textarea>
                     </div>
 
@@ -49,16 +49,21 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">$</div>
                             </div>
-                            <input [(ngModel)]="newRental.dailyRate" name="dailyRate" type="number" name="dailyRate" class="form-control" id="dailyRate">
+                            <input [(ngModel)]="newRental.dailyRate" name="dailyRate" type="number" name="dailyRate" class="form-control" id="dailyRate" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="shared">Shared</label>
-                        <input [(ngModel)]="newRental.shared" name="shared" type="checkbox" class="form-control" id="shared">
+                        <input [(ngModel)]="newRental.shared" name="shared" type="checkbox" class="form-control" id="shared" required>
                     </div>
-                    <button type="button" class="btn btn-bwm" (click)="createRental()">Submit</button>
+                    <button type="button" class="btn btn-bwm" (click)="createRental()" [disabled]="!RentalForm.form.valid">Submit</button>
                 </form>
+                <div *ngIf="errors.length>0" class="alert alert-danger">
+                    <p *ngFor="let error of errors">
+                        {{error.detail}}
+                    </p>
+                </div>
             </div>
             <div class="col-md-6 ml-auto">
                 <div class="image-container">

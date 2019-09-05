@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Rental } from 'src/app/Services/rental.model';
 import { MainServiceService } from 'src/app/Services/main-service.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-rental-create',
@@ -11,12 +14,12 @@ export class RentalCreateComponent implements OnInit {
 
   newRental: Rental;
   rentalCategories = Rental.CATEGORIES;
+  errors: any[] = [];
 
-
-  constructor(private mainService: MainServiceService) { }
+  constructor(private mainService: MainServiceService,private router: Router) { }
 
   handleImageChannge() {
-    this.newRental.image = "http://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/13/image/jpeg"
+    this.newRental.image = "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/13/image/jpeg"
   }
 
   ngOnInit() {
@@ -26,11 +29,11 @@ export class RentalCreateComponent implements OnInit {
 
   createRental() {
     this.mainService.createRental(this.newRental).subscribe(
-      ()=>{
-
+      (rental: Rental)=>{
+        this.router.navigate([`/rentals/${rental._id}`]);
       },
-      (err)=> {
-
+      (errorResponse: HttpErrorResponse)=> {
+        this.errors = errorResponse.error.errors;
       }
     );
   }
