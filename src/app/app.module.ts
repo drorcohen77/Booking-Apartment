@@ -7,12 +7,16 @@ import { AppRoutingModule,routingComponents, } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { MainModule } from './main/main.module';
+import { ManageModule } from './manage/manage.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthComponent } from './auth/auth.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
+import { ManageComponent } from './manage/manage.component';
+import { ManageRentalComponent } from './manage/manage-rental/manage-rental.component';
+import { ManageBookingComponent } from './manage/manage-booking/manage-booking.component';
 
 
 // import { AuthComponent } from './auth/auth.component';
@@ -24,12 +28,12 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     HeaderComponent,
     AuthComponent
-    // AuthComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MainModule,
+    ManageModule,
     AuthModule,
     NgbModule.forRoot(),
     BrowserAnimationsModule,
