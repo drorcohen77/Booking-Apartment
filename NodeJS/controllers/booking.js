@@ -46,6 +46,18 @@ exports.createBooking = function(req, res) {
 
 }
 
+exports.getUserBooking = function(req, res) {
+    const user = res.locals.user;
+
+    Booking.where({ user: user }) // can be also written like: Rental.where(user), since the prorerty 'user' is the same as the it's value ('user')
+        .populate('rentals')
+        .exec(function(err, foundBookings) {
+            if (err) {
+                return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
+            }
+            return res.json(foundBookings);
+        });
+}
 
 
 function isValidBooking(proposedBooking, rental) {
