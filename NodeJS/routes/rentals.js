@@ -20,6 +20,19 @@ router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
 //         });
 // });
 
+router.get('/manage', UserCtrl.authMiddleware, (req, res) => {
+    const user = res.locals.user;
+
+    Rentals.where({ user: user }) // can be also written like: Rental.where(user), since the prorerty 'user' is the same as the it's value ('user')
+        .populate('bookings')
+        .exec(function(err, foundRental) {
+            if (err) {
+                return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) });
+            }
+            return res.json(foundRental);
+        });
+});
+
 router.get('/:id', (req, res) => {
     const rentalId = req.params.id;
 
