@@ -7,6 +7,8 @@ import { AuthGuard } from '../Services/auth.guard';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { ManageRentalComponent } from './manage-rental/manage-rental.component';
 import { ManageComponent } from './manage.component';
+import { MainServiceService } from '../Services/main-service.service';
+import { BookingService } from '../Services/booking.service';
 
 
 const routes: Routes = [
@@ -31,7 +33,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         HttpClientModule
     ],
-    providers:[]
+    providers:[MainServiceService,BookingService]
 })
 
 export class ManageModule {}
