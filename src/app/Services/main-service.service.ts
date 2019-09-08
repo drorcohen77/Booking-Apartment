@@ -12,6 +12,8 @@ import { Rental } from './rental.model';
 export class MainServiceService {
 
   private Url:string = "/api/v1/rentals/";
+  private UrlRentalManage: string = "/api/v1/rentals/manage";
+  
 
   constructor(private http:HttpClient) { }
   
@@ -31,6 +33,10 @@ export class MainServiceService {
 
   public createRental(rental: Rental) : Observable<any> {
     return this.http.post(this.Url, rental);
+  }
+
+  public getRentalsManage() : Observable<any> {
+    return this.http.get(this.UrlRentalManage);
   }
 
  
