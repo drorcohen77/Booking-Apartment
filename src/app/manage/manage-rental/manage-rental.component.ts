@@ -10,7 +10,7 @@ import { Rental } from 'src/app/Services/rental.model';
 })
 export class ManageRentalComponent implements OnInit {
 
-   public rentalsManage: Rental[] = [];
+   public rentalsManage: Rental[];
    public errors: any[] = [];
 
   constructor(private mainService: MainServiceService) { }
