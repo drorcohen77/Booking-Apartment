@@ -11,6 +11,7 @@ import { MainServiceService } from '../Services/main-service.service';
 import { BookingService } from '../Services/booking.service';
 import { NgPipesModule } from 'ngx-pipes';
 import { FormatDatePipe } from '../common/Pipes/format-date.pipe';
+import { ManageRentalBookingComponent } from './manage-rental/manage-rental-booking/manage-rental-booking.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
         ManageBookingComponent,
         ManageRentalComponent,
         ManageComponent,
-        FormatDatePipe
+        FormatDatePipe,
+        ManageRentalBookingComponent
     ],
     imports:[
         CommonModule,

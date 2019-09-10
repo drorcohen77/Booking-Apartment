@@ -42,7 +42,7 @@ export class AuthGuard implements CanActivate {
     this.url = state.url;
 
     if(this.auth.isAuthenticated()) {
-        return this. handleAuthState();
+        return this.handleAuthState();
     }
 
     return this.handleNotAuthState()

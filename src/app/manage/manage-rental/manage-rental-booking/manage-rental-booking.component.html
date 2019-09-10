@@ -1,0 +1,21 @@
+<button class="btn btn-ghost" (click)="modalService.open(content)">Show Bookings</button>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title title">Made Bookings</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="bookings-inner-container" *ngFor="let bookings of rentalBookings; let i=index">
+            <p><span>Date:</span> {{bookings.startAt | formatDate}} - {{bookings.endtAt | formatDate}} </p>
+            <p><span>Guests:</span> {{bookings.guests}}</p>
+            <p><span>Total Price:</span> {{bookings.totalPrice}} $</p>
+            <hr *ngIf="rentalBookings.length !=  i+1">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-bwm" (click)="c('Close click')">Cancel</button>
+    </div>
+</ng-template>
