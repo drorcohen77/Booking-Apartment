@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MainServiceService } from 'src/app/Services/main-service.service';
 import { Rental } from 'src/app/Services/rental.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-rental',
@@ -12,8 +13,10 @@ export class ManageRentalComponent implements OnInit {
 
    public rentalsManage: Rental[];
    public errors: any[] = [];
+   public rentalDeleteIndex:number;
+   public deleteStatus: boolean = false;
 
-  constructor(private mainService: MainServiceService) { }
+  constructor(private mainService: MainServiceService, private toastr: ToastrService) { }
 
   ngOnInit() {
 
@@ -28,6 +31,22 @@ export class ManageRentalComponent implements OnInit {
     );
 
   }
+
+  deleteRental(rentalId: string) {
+
+    this.mainService.deleteRental(rentalId).subscribe(
+      () =>{
+        this.deleteStatus = true;
+        this.rentalsManage.splice(this.rentalDeleteIndex,1);
+        this.rentalDeleteIndex = undefined;
+        
+      },
+      (errorsResponse: HttpErrorResponse) => {
+        this.toastr.error(errorsResponse.error.errors[0].detail,'Faild!');
+        }
+    ) 
+  }
+  
   
 
 }
