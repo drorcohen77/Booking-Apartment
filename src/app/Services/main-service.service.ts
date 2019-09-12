@@ -39,5 +39,8 @@ export class MainServiceService {
     return this.http.get(this.UrlRentalManage);
   }
 
+  public deleteRental(rentalId:string) : Observable<any> {
+    return this.http.delete(this.Url+ rentalId);
+  }
  
 }
