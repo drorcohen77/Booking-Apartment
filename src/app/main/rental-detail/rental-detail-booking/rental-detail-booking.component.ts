@@ -41,7 +41,7 @@ export class RentalDetailBookingComponent implements OnInit {
       isInvalidDate: this.checkForInvalidDates.bind(this)
   };
 
-  constructor(private helper:HelperService, private modalService: NgbModal, private BookingService: BookingService, private toastr: ToastrService, private  auth: AuthService) { }
+  constructor(private helper:HelperService, private modalService: NgbModal, private BookingService: BookingService, private toastr: ToastrService, public  auth: AuthService) { }
 
   ngOnInit() {
     this.newBooking= new Booking;
