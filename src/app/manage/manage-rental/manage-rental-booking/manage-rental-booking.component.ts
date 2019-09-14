@@ -17,4 +17,6 @@ export class ManageRentalBookingComponent implements OnInit {
     console.log(this.rentalBookings);
   }
 
+  
+
 }

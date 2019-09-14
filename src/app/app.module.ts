@@ -17,7 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ManageComponent } from './manage/manage.component';
 import { ManageRentalComponent } from './manage/manage-rental/manage-rental.component';
 import { ManageBookingComponent } from './manage/manage-booking/manage-booking.component';
-// import { FormatDatePipe } from './format-date.pipe';
+// import { FormatDatePipe } fro./common/Pipes/format-date.pipeipe';
 
 
 // import { AuthComponent } from './auth/auth.component';
