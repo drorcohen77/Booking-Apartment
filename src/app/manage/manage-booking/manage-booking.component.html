@@ -22,7 +22,7 @@
                 </div>
             </div>
         </ng-container>
-        <div class="alert alert-warning" *ngIf="bookingsManage && bookingsManage == 0">
+        <div class="alert alert-warning" *ngIf="bookingsManage && bookingsManage.length == 0">
             You have no bookings created go to rentals section and book your place today.
             <a class="btn btn-bwm" routerLink="/rentals">Available Rentals</a>
         </div>

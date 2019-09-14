@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ManageBookingComponent implements OnInit {
 
-  public bookingsManage: Rental[];
+  public bookingsManage: Rental[] = [];
   public errors: any[] = [];
 
   constructor(private bookingService: BookingService) { }
