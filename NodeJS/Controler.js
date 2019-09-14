@@ -68,7 +68,7 @@ app.use(express.static(appPath));
 
 app.get('*', function(req, res) {
     res.sendFile(path.resolve(appPath, 'index.html'));
-});
+});;
 
 app.listen(PORT, () => {
     console.log('Server is runnig');
