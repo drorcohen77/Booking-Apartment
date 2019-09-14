@@ -63,6 +63,12 @@ app.use('/api/v1/rentals', rentalRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
 
+const appPath = path.join(__dirname, '..', 'dist/Booking-Apartment');
+app.use(express.static(appPath));
+
+app.get('*', function(req, res) {
+    res.sendFile(path.resolve(appPath, 'index.html'));
+});;
 
 app.listen(PORT, () => {
     console.log('Server is runnig');
